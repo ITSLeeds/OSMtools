@@ -46,7 +46,7 @@ osmt_filter <- function(file, path_out,
                       '"')
   }
   
-  path_out <- normalizePath(path_out)
+  path_out <- normalizePath(path_out, mustWork = FALSE)
   request <- paste0(request," -o=",path_out)
   
   system(request, intern = TRUE)
