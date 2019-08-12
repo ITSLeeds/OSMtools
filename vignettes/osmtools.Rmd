@@ -16,12 +16,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-
 ## Download from Geofabrik
 
 ```{r, eval=FALSE}
 osmt_geofabrik_dl(region = "europe/great-britain/england/west-yorkshire", destfile = "wy.pbf")
 ```
 
+## Convert from one format to another
+
+```{r, eval=FALSE}
+osmt_convert(file = "wy.pbf", format_out = "o5m")
+```
+
+## Filtering objects
+
+```{r, eval=FALSE}
+osmt_filter(file = "wy.o5m", path_out = "cycling.o5m", keep = "highway=")
+osmt_filter(file = "cycling.o5m", path_out = "driving.o5m", drop_tags = "cycleway")
+```
+
+## Filtering tags
 
