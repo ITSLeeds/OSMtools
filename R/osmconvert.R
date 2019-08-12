@@ -1,8 +1,9 @@
 #' Convert file format of osm files
 #' 
-#'  @param file path to file
-#'  @param format format to convert to
-#' 
+#' @param file path to file
+#' @param format_out format to convert to
+#' @param drop_author logical, reduce file size bu removing author info
+#' @export 
 #' 
 osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE){
   checkmate::assert_os("windows")

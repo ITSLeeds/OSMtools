@@ -1,12 +1,12 @@
 #' Filter osm by tags
 #' 
-#'  @param file path to file
-#'  @param path_out path to file to save result
-#'  @param keep object to keep arguments
-#'  @param drop object to drop arguments
-#'  @param keep_tags tags to keep arguments
-#'  @param drop_tags togs to drop arguments
-#' 
+#' @param file path to file
+#' @param path_out path to file to save result
+#' @param keep object to keep arguments
+#' @param drop object to drop arguments
+#' @param keep_tags tags to keep arguments
+#' @param drop_tags togs to drop arguments
+#' @export
 #' 
 
 osmt_filter <- function(file, path_out,

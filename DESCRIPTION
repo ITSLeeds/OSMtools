@@ -6,13 +6,12 @@ Authors@R: c(
     person("Malcolm", "Morgan", email = "m.morgan1@leeds.ac.uk", role = c("aut","cre"), 
       comment = c(ORCID = "0000-0002-9488-9183"))
     )
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: Malcolm Morgan <yourself@somewhere.net>
+Description: Wrapper for osmfilter and osmconvert and geofabrik downloads. Help to get OSM big data.
 Language: EN-GB
 License: file LICENSE
-URL: https://github.com/ITSLeeds/RPackageTemplate, https://itsleeds.github.io/RPackageTemplate/
-BugReports: https://github.com/ITSLeeds/RPackageTemplate/issues
+URL: https://github.com/ITSLeeds/OSMtools, https://itsleeds.github.io/OSMtools/
+BugReports: https://github.com/ITSLeeds/OSMtools/issues
 Encoding: UTF-8
 LazyData: true
 Imports:

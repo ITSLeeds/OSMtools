@@ -7,11 +7,19 @@
 osmt_filter(file, path_out, keep = NULL, drop = NULL,
   keep_tags = NULL, drop_tags = NULL)
 }
+\arguments{
+\item{file}{path to file}
+
+\item{path_out}{path to file to save result}
+
+\item{keep}{object to keep arguments}
+
+\item{drop}{object to drop arguments}
+
+\item{keep_tags}{tags to keep arguments}
+
+\item{drop_tags}{togs to drop arguments}
+}
 \description{
-@param file path to file
- @param path_out path to file to save result
- @param keep object to keep arguments
- @param drop object to drop arguments
- @param keep_tags tags to keep arguments
- @param drop_tags togs to drop arguments
+Filter osm by tags
 }
