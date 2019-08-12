@@ -1,0 +1,27 @@
+---
+title: "OSM Tools"
+author: "Malcolm Morgan"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+## Download from Geofabrik
+
+```{r, eval=FALSE}
+osmt_geofabrik_dl(region = "europe/great-britain/england/west-yorkshire", destfile = "wy.pbf")
+```
+
+
