@@ -5,7 +5,9 @@
 OSMtools
 ========
 
-R wrappers for OSM Filter and OSM Convert
+R wrappers for [OSM Filter](https://wiki.openstreetmap.org/wiki/Osmfilter) and [OSM Convert](https://wiki.openstreetmap.org/wiki/Osmconvert) and functions for downloading from [geofabrik](https://www.geofabrik.de/data/download.html). The package makes it easier to download and use large [Open Street Map](https://www.openstreetmap.org) files with R.
+
+**Note**: The package is currently windows only
 
 Installation
 ------------
@@ -20,7 +22,25 @@ remotes::install_github("ITSleeds/OSMTools")
 Usage
 -----
 
-This R package provides a userfiendly interfacde to the Windows command line tools osmfilter.exe and osmconvert.exe
+This R package provides a userfiendly interface to the Windows command line tools osmfilter.exe and osmconvert.exe. For example, if you wanted to get the road in your local area.
+
+You can download a section of the OSM for your local area from Geofabrik.
+
+``` r
+osmt_geofabrik_dl(region = "europe/great-britain/england/west-yorkshire", destfile = "wy.pbf")
+```
+
+Then convert the PBF file into a format that can be edited.
+
+``` r
+osmt_convert(file = "wy.pbf", format_out = "o5m")
+```
+
+Then make a new file with just the roads.
+
+``` r
+osmt_filter(file = "wy.o5m", path_out = "wy_roads.o5m", keep = "highway=")
+```
 
 Contribution
 ------------
