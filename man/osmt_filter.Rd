@@ -4,8 +4,14 @@
 \alias{osmt_filter}
 \title{Filter osm by tags}
 \usage{
-osmt_filter(file, path_out, keep = NULL, drop = NULL,
-  keep_tags = NULL, drop_tags = NULL)
+osmt_filter(
+  file,
+  path_out,
+  keep = NULL,
+  drop = NULL,
+  keep_tags = NULL,
+  drop_tags = NULL
+)
 }
 \arguments{
 \item{file}{path to file}

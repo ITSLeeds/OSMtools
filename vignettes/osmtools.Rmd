@@ -22,6 +22,8 @@ knitr::opts_chunk$set(
 osmt_geofabrik_dl(region = "europe/great-britain/england/west-yorkshire", destfile = "wy.pbf")
 ```
 
+You can also uke the [geofabrik package](https://github.com/ITSLeeds/geofabric) 
+
 ## Convert from one format to another
 
 ```{r, eval=FALSE}
