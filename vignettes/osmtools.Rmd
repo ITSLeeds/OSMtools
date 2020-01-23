@@ -38,6 +38,29 @@ You can also uke the [geofabrik package](https://github.com/ITSLeeds/geofabric)
 osmt_convert(file = "iow.pbf", format_out = "o5m")
 ```
 
+Formats supported are:
+
+* [osm](https://wiki.openstreetmap.org/wiki/OSM_XML) - native OSM format (large files slow processing)
+* [osc](https://wiki.openstreetmap.org/wiki/OsmChange) - osm change log
+* osc.gz gzipped osm change log
+* osh
+* [o5m](https://wiki.openstreetmap.org/wiki/O5m) - a compromise between .osm and .pbf format
+* [o5c](https://wiki.openstreetmap.org/wiki/O5m) o5m's change log
+* [pbf](https://wiki.openstreetmap.org/wiki/PBF_Format) - small size and fast processing, Geofabrik download format
+
+**Note on file format choice**
+
+The native format of OSm is the the .osm. But .pbf is the prefered format for transfering data as it is the most compact. It is also acceptable and an input for many pieces of sofotware e.g. `sf` package and `opentripplanner`. But it is not supported by `osmt_filter`.
+
+You could convert your files from pbf to osm and then use `osmt_filter` and finally read them into R. But `osmt_filter` also accepts .o5m files and will process them faster. So a typical workflow for large files is:
+
+1. Download pbf files
+1. Convert to o5m
+1. Filter as required
+1. Convert to pbf
+1. Import into R or OpenTripPlanner etc
+
+
 ## Filtering objects
 
 You can keep or remove (drop) objects based on their tags. For example if you only wanted to keep the roads you could use
@@ -64,4 +87,19 @@ osmt_filter(file = "cycling.o5m", path_out = "smallstreets.o5m",
             modify_tags = "highway=primary to =tertiary highway=secondary to =tertiary")
 
 ```
+
+## Reading into R
+
+The SF package supports reading .osm and .pbf files but not .o5m files.
+
+```{r, eval=FALSE}
+lines <- sf::st_read("iow.pbf", layer = "lines") # Works
+lines2 <- sf::st_read("cycling.o5m", layer = "lines") # Fails
+osmt_convert(file = "cycling.o5m", format_out = "pbf")
+lines3 <- sf::st_read("cycling.pbf", layer = "lines") # Works
+```
+
+
+
+
 
