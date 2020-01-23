@@ -9,12 +9,10 @@ osmt_filter(
   path_out,
   keep = NULL,
   drop = NULL,
-
   modify = NULL,
   keep_tags = NULL,
   drop_tags = NULL,
   modify_tags = NULL
-
 )
 }
 \arguments{
