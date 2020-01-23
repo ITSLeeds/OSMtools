@@ -1,5 +1,5 @@
 #' Convert file format of osm files
-#' 
+#'
 #' @param file path to file
 #' @param format_out format to convert to
 #' @param drop_author logical, reduce file size by removing author info
@@ -13,7 +13,7 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE){
   file <- normalizePath(file)
   checkmate::assert_file_exists(file)
   path_out <- paste0(substr(file,1,nchar(file)-3),format_out)
-  
+
   if(checkmate::check_os("windows")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe")
   } else if(checkmate::check_os("linux")){

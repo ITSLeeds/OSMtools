@@ -4,15 +4,18 @@
 \alias{osmt_convert}
 \title{Convert file format of osm files}
 \usage{
-osmt_convert(file, format_out = "o5m", drop_author = TRUE)
+osmt_convert(file, format_out = "pbf", drop_author = TRUE, overwrite = FALSE)
 }
 \arguments{
 \item{file}{path to file}
 
 \item{format_out}{format to convert to}
 
-\item{drop_author}{logical, reduce file size by removing author info}
-}
+
+\item{drop_author}{logical, reduce file size bu removing author info}
+
+\item{overwrite}{logical, should existing file be overwritten, default = FALSE}
+
 \description{
 Convert file format of osm files
 }

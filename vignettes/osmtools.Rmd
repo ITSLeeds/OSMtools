@@ -30,6 +30,8 @@ library(OSMtools)
 osmt_geofabrik_dl(region = "europe/great-britain/england/isle-of-wight", destfile = "iow.pbf")
 ```
 
+You can also uke the [geofabrik package](https://github.com/ITSLeeds/geofabric) 
+
 ## Convert from one format to another
 
 ```{r, eval=FALSE}
