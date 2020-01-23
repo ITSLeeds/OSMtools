@@ -2,11 +2,10 @@
 #' 
 #' @param file path to file
 #' @param format_out format to convert to
-#' @param drop_author logical, reduce file size bu removing author info
+#' @param drop_author logical, reduce file size by removing author info
 #' @export 
 #' 
 osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE){
-  checkmate::assert_os("windows")
   checkmate::assert_choice(format_out, 
                            choice = c("osm","osc",
                                       "osc.gz","osh",
@@ -14,9 +13,19 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE){
   file <- normalizePath(file)
   checkmate::assert_file_exists(file)
   path_out <- paste0(substr(file,1,nchar(file)-3),format_out)
-  #checkmate::check_file_exists(path_out)
-  path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe")
+  
+  if(checkmate::check_os("windows")){
+    path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe")
+  } else if(checkmate::check_os("linux")){
+    path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert64")
+  } else {
+    stop("OS not supported")
+  }
   path_osmconvert <- normalizePath(path_osmconvert)
+  
+  
+  #checkmate::check_file_exists(path_out)
+  
   request <- paste0(path_osmconvert, 
                     " ",
                     file,

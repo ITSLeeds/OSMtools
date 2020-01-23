@@ -4,22 +4,40 @@
 \alias{osmt_filter}
 \title{Filter osm by tags}
 \usage{
-osmt_filter(file, path_out, keep = NULL, drop = NULL,
-  keep_tags = NULL, drop_tags = NULL)
+osmt_filter(
+  file,
+  path_out,
+  keep = NULL,
+  drop = NULL,
+  modify = NULL,
+  keep_tags = NULL,
+  drop_tags = NULL,
+  modify_tags = NULL
+)
 }
 \arguments{
 \item{file}{path to file}
 
 \item{path_out}{path to file to save result}
 
-\item{keep}{object to keep arguments}
+\item{keep}{character, object to keep arguments}
 
-\item{drop}{object to drop arguments}
+\item{drop}{character, object to drop arguments}
 
-\item{keep_tags}{tags to keep arguments}
+\item{modify}{character, object tags paris to modify}
 
-\item{drop_tags}{togs to drop arguments}
+\item{keep_tags}{character, tags to keep arguments}
+
+\item{drop_tags}{character, tags to drop arguments}
+
+\item{modify_tags}{character, tags to modify}
+}
+\value{
+FUnction returns NULL but a new file is saved to disk
 }
 \description{
-Filter osm by tags
+https://wiki.openstreetmap.org/wiki/Osmfilter
+}
+\details{
+A wrapper around osmfilter, supports Windows, Mac, Linux versions
 }

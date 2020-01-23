@@ -16,24 +16,50 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Install and Load Package
+```{r, eval=FALSE}
+devtools::install_github("ITSleeds/OSMtools")
+library(OSMtools)
+```
+
+
 ## Download from Geofabrik
 
 ```{r, eval=FALSE}
-osmt_geofabrik_dl(region = "europe/great-britain/england/west-yorkshire", destfile = "wy.pbf")
+
+osmt_geofabrik_dl(region = "europe/great-britain/england/isle-of-wight", destfile = "iow.pbf")
 ```
 
 ## Convert from one format to another
 
 ```{r, eval=FALSE}
-osmt_convert(file = "wy.pbf", format_out = "o5m")
+osmt_convert(file = "iow.pbf", format_out = "o5m")
 ```
 
 ## Filtering objects
 
+You can keep or remove (drop) objects based on their tags. For example if you only wanted to keep the roads you could use
+`keep = "highway="` this would only keep objects that had any value for the highway tag.
+
 ```{r, eval=FALSE}
-osmt_filter(file = "wy.o5m", path_out = "cycling.o5m", keep = "highway=")
-osmt_filter(file = "cycling.o5m", path_out = "driving.o5m", drop_tags = "cycleway")
+osmt_filter(file = "iow.o5m", path_out = "cycling.o5m", keep = "highway=")
 ```
 
 ## Filtering tags
+
+You can keep or remove (drop) tags from objects. This example removed the cycleway tag from all objects
+
+```{r, eval=FALSE}
+osmt_filter(file = "cycling.o5m", path_out = "driving.o5m", drop_tags = "cycleway")
+```
+
+## Modifying Tags
+
+To modify tags use the form "key=tag1 to =tag2" you can do multiple modifications at once. This example changes all the objects with the tags highway = primary or highway = secondary to highway = tertiary.
+
+```{r, eval=FALSE}
+osmt_filter(file = "cycling.o5m", path_out = "smallstreets.o5m", 
+            modify_tags = "highway=primary to =tertiary highway=secondary to =tertiary")
+
+```
 

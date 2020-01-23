@@ -11,7 +11,7 @@ osmt_convert(file, format_out = "o5m", drop_author = TRUE)
 
 \item{format_out}{format to convert to}
 
-\item{drop_author}{logical, reduce file size bu removing author info}
+\item{drop_author}{logical, reduce file size by removing author info}
 }
 \description{
 Convert file format of osm files
