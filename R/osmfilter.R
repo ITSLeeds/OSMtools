@@ -10,6 +10,7 @@
 #' @param keep_tags character, tags to keep arguments
 #' @param drop_tags character, tags to drop arguments
 #' @param modify_tags character, tags to modify
+#' @param bbox sf bbox, from st_bbox(), or a 2x2 matrix lng/lat coordinates for bottom left and top right corners
 #' 
 #' @details 
 #' A wrapper around osmfilter, supports Windows, Mac, Linux versions
@@ -27,7 +28,8 @@ osmt_filter <- function(file,
                         modify = NULL,
                         keep_tags = NULL,
                         drop_tags = NULL,
-                        modify_tags = NULL
+                        modify_tags = NULL,
+                        bbox = NULL
                         ){
   
   file <- normalizePath(file)
@@ -45,6 +47,26 @@ osmt_filter <- function(file,
   
   path_osmfilter <- file.path(path.package("OSMtools"),"osmfilter.exe")
   path_osmfilter <- normalizePath(path_osmfilter)
+  
+  # Check bbox
+  if(!is.null(bbox)){
+    if(all(class(bbox) == "bbox")){
+      bbox <- matrix(as.numeric(bbox), ncol = 2, byrow = 2)
+    }
+    checkmate::assert_matrix(bbox, min.rows = 2, max.rows = 2, min.cols = 2,
+                             max.cols = 2)
+   
+    checkmate::assert_numeric(bbox[,1], lower = -180, upper = 180)
+    checkmate::assert_numeric(bbox[,2], lower = -90, upper = 90)
+    if(bbox[1,1] > bbox[2,1]){
+      stop("BBox first point is not west of second point")
+    }
+    if(bbox[2,1] > bbox[2,2]){
+      stop("BBox first point is not south of second point")
+    }
+    
+  }
+  
   
   request <- paste0(path_osmfilter," ",file)
   if(!is.null(keep)){
@@ -87,6 +109,11 @@ osmt_filter <- function(file,
                       '"')
   }
   
+  if(!is.null(bbox)){
+    request <- paste0(request,
+                      ' -b=',
+                      paste(bbox[1],bbox[3],bbox[2],bbox[4], sep = ","))
+  }
   
   path_out <- normalizePath(path_out, mustWork = FALSE)
   request <- paste0(request," -o=",path_out)
