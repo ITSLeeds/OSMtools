@@ -4,7 +4,7 @@
 \alias{osmt_convert}
 \title{Convert file format of osm files}
 \usage{
-osmt_convert(file, format_out = "o5m", drop_author = TRUE)
+osmt_convert(file, format_out = "o5m", drop_author = TRUE, bbox = NULL)
 }
 \arguments{
 \item{file}{path to file}
@@ -12,6 +12,8 @@ osmt_convert(file, format_out = "o5m", drop_author = TRUE)
 \item{format_out}{format to convert to}
 
 \item{drop_author}{logical, reduce file size by removing author info}
+
+\item{bbox}{sf bbox, from st_bbox(), or a 2x2 matrix lng/lat coordinates for bottom left and top right corners}
 }
 \description{
 Convert file format of osm files

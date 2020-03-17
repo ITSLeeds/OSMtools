@@ -12,8 +12,7 @@ osmt_filter(
   modify = NULL,
   keep_tags = NULL,
   drop_tags = NULL,
-  modify_tags = NULL,
-  bbox = NULL
+  modify_tags = NULL
 )
 }
 \arguments{
@@ -32,8 +31,6 @@ osmt_filter(
 \item{drop_tags}{character, tags to drop arguments}
 
 \item{modify_tags}{character, tags to modify}
-
-\item{bbox}{sf bbox, from st_bbox(), or a 2x2 matrix lng/lat coordinates for bottom left and top right corners}
 }
 \value{
 FUnction returns NULL but a new file is saved to disk
