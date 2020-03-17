@@ -44,20 +44,22 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
     
   }
   
+  request <- paste0(path_osmconvert, 
+                    " ",
+                    file,
+                    " --out-",
+                    format_out)
+  
+  if(drop_author){
+    request <- paste0(request," --drop-author")
+  }
+  
   if(!is.null(bbox)){
     request <- paste0(request,
                       ' -b=',
                       paste(bbox[1],bbox[3],bbox[2],bbox[4], sep = ","))
   }
   
-  request <- paste0(path_osmconvert, 
-                    " ",
-                    file,
-                    " --out-",
-                    format_out)
-  if(drop_author){
-    request <- paste0(request," --drop-author")
-  }
   request <- paste0(request," -o=",path_out)
   
   system(request, intern = TRUE)
