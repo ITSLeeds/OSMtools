@@ -16,9 +16,9 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
   path_out <- paste0(substr(file,1,nchar(file)-3),format_out)
   checkmate::check_file_exists(path_out)
 
-  if(checkmate::check_os("windows")){
+  if(checkmate::test_os("windows")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe")
-  } else if(checkmate::check_os("linux")){
+  } else if(checkmate::test_os("linux")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert64")
   } else {
     stop("OS not supported")

@@ -34,11 +34,11 @@ osmt_filter <- function(file,
   file <- normalizePath(file)
   checkmate::assert_file_exists(file)
   
-  if(checkmate::check_os("windows")){
+  if(checkmate::test_os("windows")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter.exe")
-  } else if(checkmate::check_os("linux")){
+  } else if(checkmate::test_os("linux")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter32")
-  } else if(checkmate::check_os("mac")){
+  } else if(checkmate::test_os("mac")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter.rb")
   } else {
     stop("OS not supported")
