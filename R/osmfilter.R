@@ -35,16 +35,16 @@ osmt_filter <- function(file,
   checkmate::assert_file_exists(file)
   
   if(checkmate::test_os("windows")){
-    path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter.exe")
+    osmt_filter <- file.path(path.package("OSMtools"),"osmfilter.exe")
   } else if(checkmate::test_os("linux")){
-    path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter32")
+    osmt_filter <- file.path(path.package("OSMtools"),"osmfilter32")
   } else if(checkmate::test_os("mac")){
-    path_osmconvert <- file.path(path.package("OSMtools"),"osmfilter.rb")
+    osmt_filter <- file.path(path.package("OSMtools"),"osmfilter.rb")
   } else {
     stop("OS not supported")
   }
   
-  path_osmfilter <- file.path(path.package("OSMtools"),"osmfilter.exe")
+  #path_osmfilter <- file.path(path.package("OSMtools"),"osmfilter.exe")
   path_osmfilter <- normalizePath(path_osmfilter)
   
   request <- paste0(path_osmfilter," ",file)
