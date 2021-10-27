@@ -52,7 +52,7 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
                     format_out)
   
   if(drop_author){
-    request <- paste0(request," --drop-author")sq
+    request <- paste0(request," --drop-author")
   }
   
   if(!is.null(bbox)){
