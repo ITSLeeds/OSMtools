@@ -47,7 +47,7 @@ osmt_filter <- function(file,
   #path_osmfilter <- file.path(path.package("OSMtools"),"osmfilter.exe")
   path_osmfilter <- normalizePath(path_osmfilter)
   
-  request <- paste0(path_osmfilter," ",file)
+  request <- paste0(shQuote(path_osmfilter)," ",shQuote(file))
   if(!is.null(keep)){
     add <- paste0(' --keep="',
                   keep,

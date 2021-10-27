@@ -11,13 +11,14 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
                            choice = c("osm","osc",
                                       "osc.gz","osh",
                                       "o5m","o5c","pbf"))
-  file <- normalizePath(file)
+  file <- normalizePath(file, winslash = "/")
   checkmate::assert_file_exists(file)
   path_out <- paste0(substr(file,1,nchar(file)-3),format_out)
   checkmate::check_file_exists(path_out)
 
   if(checkmate::test_os("windows")){
-    path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe")
+    path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert.exe", fsep = "/")
+    path_osmconvert <- gsub("\\","/",path_osmconvert, fixed = TRUE)
   } else if(checkmate::test_os("linux")){
     path_osmconvert <- file.path(path.package("OSMtools"),"osmconvert64")
   } else {
@@ -44,14 +45,14 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
     
   }
   
-  request <- paste0(path_osmconvert, 
+  request <- paste0("",shQuote(path_osmconvert),"",
                     " ",
-                    file,
+                    shQuote(file),
                     " --out-",
                     format_out)
   
   if(drop_author){
-    request <- paste0(request," --drop-author")
+    request <- paste0(request," --drop-author")sq
   }
   
   if(!is.null(bbox)){
@@ -60,7 +61,7 @@ osmt_convert <- function(file, format_out = "o5m", drop_author = TRUE, bbox = NU
                       paste(bbox[1],bbox[3],bbox[2],bbox[4], sep = ","))
   }
   
-  request <- paste0(request," -o=",path_out)
+  request <- paste0(request," -o=",shQuote(path_out))
   
   system(request, intern = TRUE)
   
